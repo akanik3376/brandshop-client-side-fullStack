@@ -1,7 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providor/Providor";
 
 const LoginPage = () => {
 
+    const { googleLogin, signInUser } = useContext(AuthContext)
+
+    const HandelGoogleLogin = () => {
+        googleLogin()
+    }
 
     const HandelLogin = e => {
         e.preventDefault()
@@ -10,6 +17,8 @@ const LoginPage = () => {
 
         const logInfo = { email, password };
         console.log(logInfo)
+        // signIn user
+        signInUser(email, password)
     }
 
     return (
@@ -41,7 +50,9 @@ const LoginPage = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
-                        <h4 className="text-xl mb-3">Login with <button className="font-semibold text-violet-700 underline">Google</button></h4>
+
+                        <h4 className="text-xl mb-3">Login with <button onClick={HandelGoogleLogin} className="font-semibold text-violet-700 underline">Google</button></h4>
+
                         <h4 className="text-xl">Don`t have account? please <Link
                             to='/register' className="font-semibold text-violet-700 underline">Register</Link></h4>
                         <div className="form-control mt-6">

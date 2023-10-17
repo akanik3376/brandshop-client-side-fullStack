@@ -4,10 +4,16 @@ import Footer from "../SharedPage/Footer";
 
 const MainRoot = () => {
     return (
-        <div className="container mx-auto">
-            <div>
+        <div className=" font-serif">
+            <div className="container mx-auto">
                 <Navbar></Navbar>
+
+
+            </div>
+            <div>
                 <Outlet></Outlet>
+            </div>
+            <div className="container mx-auto">
                 <Footer></Footer>
             </div>
         </div>

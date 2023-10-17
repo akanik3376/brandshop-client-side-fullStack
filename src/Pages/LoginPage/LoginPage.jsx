@@ -13,9 +13,9 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="hero-content flex-col lg:flex-row-reverse mt-8 mb-12 bg-[#F2F2F2]">
+        <div className="container mx-auto flex-col lg:flex-row-reverse mt-8 mb-12 bg-[#F2F2F2]">
 
-            <div className="md:flex gap-4">
+            <div className="md:flex gap-6 p-6">
                 <img src="https://i.ibb.co/WcczcWf/img-03-1.jpg" alt="" />
                 <div>
                     <div className="text-center lg:text-left mt-5">

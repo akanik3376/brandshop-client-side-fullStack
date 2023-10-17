@@ -15,7 +15,7 @@ const Register = () => {
 
     return (
 
-        <div className="hero min-h-screen  bg-[#F2F2F2] mt-8 mb-12 p-5">
+        <div className="container mx-auto hero min-h-screen  bg-[#F2F2F2] mt-8 mb-12 p-5">
 
 
             <div className=" flex-shrink-0 w-full max-w-sm ">

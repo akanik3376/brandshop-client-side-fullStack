@@ -18,6 +18,12 @@ const Register = () => {
         // console.log(logInfo)
 
         createUser(email, password)
+            .then(result => {
+                console.log(result)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (

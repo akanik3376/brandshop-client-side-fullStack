@@ -8,6 +8,12 @@ const LoginPage = () => {
 
     const HandelGoogleLogin = () => {
         googleLogin()
+            .then(result => {
+                console.log(result)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const HandelLogin = e => {
@@ -19,6 +25,12 @@ const LoginPage = () => {
         console.log(logInfo)
         // signIn user
         signInUser(email, password)
+            .then(result => {
+                console.log(result)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (

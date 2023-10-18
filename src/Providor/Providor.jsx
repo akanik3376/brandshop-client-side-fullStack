@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, } from "firebase/auth";
 import app from "../firebase.config";
-import { createContext, } from "react";
+import { createContext, useEffect, useState, } from "react";
 
 
 export const AuthContext = createContext(null)
@@ -10,56 +10,62 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+
+
     // google login
     const provider = new GoogleAuthProvider();
     const googleLogin = () => {
-        signInWithPopup(auth, provider)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        setLoading(true)
+        return signInWithPopup(auth, provider)
+
     }
 
     //  create user
     const createUser = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        setLoading(true)
+
+        return createUserWithEmailAndPassword(auth, email, password)
+
     }
 
     // signIn user
     const signInUser = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        setLoading(true)
+
+        return signInWithEmailAndPassword(auth, email, password)
+
     }
 
     // logout user
     const logOutUser = () => {
-        signOut(auth).then(() => {
-            // Sign-out successful.
-        }).catch((error) => {
-            console.log(error)
-        });
+        setLoading(true)
+
+        return signOut(auth)
+        // .then(() => {
+        //     // Sign-out successful.
+        // }).catch((error) => {
+        //     console.log(error)
+        // });
     }
 
-
+    useEffect(() => {
+        const unSubscrib = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser)
+            setLoading(false)
+        })
+        return () => {
+            unSubscrib()
+        }
+    }, [])
 
 
 
     const userInfo = {
-        // user,
-        // loding,
+        user,
+        loading,
         googleLogin,
         createUser,
         signInUser,

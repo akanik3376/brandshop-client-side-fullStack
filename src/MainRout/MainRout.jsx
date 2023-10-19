@@ -7,6 +7,7 @@ import LoginPage from "../Pages/LoginPage/LoginPage";
 import Register from "../Components/Register/Register";
 import MyCart from "../Pages/MyCart/MyCart";
 import PrivetRoot from "./PrivetRoot";
+import Brand from "../Components/Brand/Brand";
 
 const router = createBrowserRouter([
     {
@@ -16,8 +17,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch('/public/data.json')
             },
+            {
+                path: '/brand/:id',
+                element: <Brand></Brand>,
+                loader: () => fetch('/public/data.json')
+            },
+
             {
                 path: '/addProduct',
                 element: <PrivetRoot><AddProduct></AddProduct></PrivetRoot>

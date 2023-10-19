@@ -1,10 +1,13 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providor/Providor";
 
 const Register = () => {
 
+    const [registerError, setRegisterError] = useState()
+
     const { createUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
 
     const HandelRegister = e => {
@@ -16,13 +19,27 @@ const Register = () => {
 
         // const logInfo = { name, email, password };
         // console.log(logInfo)
+        if (password.length < 6) {
+            setRegisterError('Password is less than 6 characters or longer')
+            return
+        } else if (!/[A-Z]/.test(password)) {
+            setRegisterError('password should have to [A-Z] capital characters.')
+            return
+        }
+
+        else if (!/[@#$%^&+=!]/.test(password)) {
+            setRegisterError('password should have to [@#$%^&+=!] special character')
+            return
+        }
 
         createUser(email, password)
             .then(result => {
                 console.log(result)
+                e.target.reset()
+                navigate('/')
             })
             .catch(err => {
-                console.log(err)
+                setRegisterError(err)
             })
     }
 
@@ -57,6 +74,7 @@ const Register = () => {
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                     </div>
+                    <p className="my-3">{registerError}</p>
                     <h4 className="text-xl">Don`t have account? please <Link
                         to='/login' className="font-semibold text-violet-700 underline">Login</Link></h4>
                     <div className="form-control mt-6">

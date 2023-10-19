@@ -1,15 +1,20 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providor/Providor";
 
 const LoginPage = () => {
 
+    const [loginError, setLoginError] = useState('')
     const { googleLogin, signInUser } = useContext(AuthContext)
+
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const HandelGoogleLogin = () => {
         googleLogin()
             .then(result => {
                 console.log(result)
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 console.log(err)
@@ -24,9 +29,26 @@ const LoginPage = () => {
         const logInfo = { email, password };
         console.log(logInfo)
         // signIn user
+
+        if (password.length < 6) {
+            setLoginError('Password is less than 6 characters or longer')
+            return
+        } else if (!/[A-Z]/.test(password)) {
+            setLoginError('password should have to [A-Z] capital characters.')
+            return
+        }
+
+        else if (!/[@#$%^&+=!]/.test(password)) {
+            setLoginError('password should have [@#$%^&+=!] special character')
+            return
+        }
+
+
         signInUser(email, password)
             .then(result => {
                 console.log(result)
+                e.target.reset()
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 console.log(err)
@@ -62,7 +84,7 @@ const LoginPage = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
-
+                        <p className="mb-3">{loginError}</p>
                         <h4 className="text-xl mb-3">Login with <button onClick={HandelGoogleLogin} className="font-semibold text-violet-700 underline">Google</button></h4>
 
                         <h4 className="text-xl">Don`t have account? please <Link

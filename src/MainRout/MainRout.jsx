@@ -6,6 +6,7 @@ import AddProduct from "../Pages/AddProduct/AddProduct";
 import LoginPage from "../Pages/LoginPage/LoginPage";
 import Register from "../Components/Register/Register";
 import MyCart from "../Pages/MyCart/MyCart";
+import PrivetRoot from "./PrivetRoot";
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addProduct',
-                element: <AddProduct></AddProduct>
+                element: <PrivetRoot><AddProduct></AddProduct></PrivetRoot>
             },
             {
                 path: '/myCart',

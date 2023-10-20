@@ -44,11 +44,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
 
         return signOut(auth)
-        // .then(() => {
-        //     // Sign-out successful.
-        // }).catch((error) => {
-        //     console.log(error)
-        // });
+
     }
 
     useEffect(() => {

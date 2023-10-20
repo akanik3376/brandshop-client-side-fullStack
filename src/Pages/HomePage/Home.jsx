@@ -6,7 +6,6 @@ import Questions from "../../Components/Questions/Questions";
 
 const Home = () => {
     const data = useLoaderData()
-    console.log(data)
     return (
         <div>
 

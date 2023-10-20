@@ -8,6 +8,8 @@ import Register from "../Components/Register/Register";
 import MyCart from "../Pages/MyCart/MyCart";
 import PrivetRoot from "./PrivetRoot";
 import Brand from "../Components/Brand/Brand";
+import CarDetails from "../Components/CarDetails/CarDetails";
+import Updatebutton from "../Components/Updatebutton/Updatebutton";
 
 const router = createBrowserRouter([
     {
@@ -18,12 +20,12 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('/public/data.json')
+                loader: () => fetch('/data.json')
             },
             {
-                path: '/brand/:id',
+                path: '/brand/:name',
                 element: <Brand></Brand>,
-                loader: () => fetch('/public/data.json')
+                loader: () => fetch('http://localhost:5000/newCar')
             },
 
             {
@@ -41,6 +43,16 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/carDetails/:id',
+                element: <PrivetRoot><CarDetails></CarDetails></PrivetRoot>,
+                loader: ({ params }) => fetch(`http://localhost:5000/newCar/${params.id}`)
+            },
+            {
+                path: '/update/:id',
+                element: <PrivetRoot><Updatebutton></Updatebutton></PrivetRoot>,
+                loader: ({ params }) => fetch(`http://localhost:5000/newCar/${params.id}`)
             },
         ]
     },

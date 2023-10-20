@@ -1,8 +1,12 @@
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddProduct = () => {
+const Updatebutton = () => {
+    const car = useLoaderData()
 
-    const handelAddCar = e => {
+    const { _id, brand, description, photo, price, rating, name } = car || {}
+
+    const handelUpdate = e => {
         e.preventDefault();
         const name = e.target.name.value;
         const price = e.target.price.value;
@@ -15,12 +19,8 @@ const AddProduct = () => {
             name, price, description, rating, photo, brand
         }
         console.log(newCar)
-        console.log(brand)
-
-        // send data to back hand data server
-
-        fetch('http://localhost:5000/newCar', {
-            method: 'POST',
+        fetch(`http://localhost:5000/newCar/${_id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -29,17 +29,16 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.insertedId) {
+                if (data.modifiedCount) {
                     Swal.fire({
                         title: 'success!',
-                        text: 'User added successfully',
+                        text: 'Car information update successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
                 }
                 e.target.reset()
             })
-
     }
 
 
@@ -49,10 +48,10 @@ const AddProduct = () => {
 
             <div className="bg-[#F4F3F0] px-24 py-5">
                 <h1 className="text-2xl font-bold text-center">
-                    Add New Product Hare !!
+                    Update Product Hare !!
                 </h1>
 
-                <form onSubmit={handelAddCar} className="mt-7">
+                <form onSubmit={handelUpdate} className="mt-7">
                     {/* name and Quantity*/}
                     <div className="grid grid-cols-1 w-full  md:grid-cols-2">
                         <div className="form-control ">
@@ -61,7 +60,7 @@ const AddProduct = () => {
                             </label>
                             <label className="input-group">
 
-                                <input type="text" name="name" placeholder="Car Name"
+                                <input type="text" name="name" defaultValue={name} placeholder="Car Name"
                                     className="input input-bordered w-full" />
                             </label>
                         </div>
@@ -72,7 +71,7 @@ const AddProduct = () => {
                             </label>
                             <label className="input-group">
 
-                                <input type="text" name="price" placeholder="Car Price"
+                                <input type="text" name="price" defaultValue={price} placeholder="Car Price"
                                     className="input input-bordered w-full" />
                             </label>
                         </div>
@@ -80,11 +79,11 @@ const AddProduct = () => {
                         {/* supplier row */}
                         <div className="form-control ">
                             <label className="label">
-                                <span className="label-text"> Short description</span>
+                                <span className="label-text">description</span>
                             </label>
                             <label className="input-group">
 
-                                <input type="text" name="description" placeholder="Short description "
+                                <input type="text" name="description" defaultValue={description} placeholder="description"
                                     className="input input-bordered w-full" />
                             </label>
                         </div>
@@ -96,7 +95,7 @@ const AddProduct = () => {
                             </label>
                             <label className="input-group">
 
-                                <input type="text" name="rating" placeholder="Rating"
+                                <input type="text" name="rating" defaultValue={rating} placeholder="Rating"
                                     className="input input-bordered w-full" />
                             </label>
                         </div>
@@ -112,7 +111,7 @@ const AddProduct = () => {
                             </label>
                             <label className="input-group">
 
-                                <input type="text" name="photo" placeholder="Photo URL"
+                                <input type="text" name="photo" defaultValue={photo} placeholder="Photo URL"
                                     className="input input-bordered w-full" />
                             </label>
 
@@ -123,7 +122,7 @@ const AddProduct = () => {
                             <label className="label">
                                 <span className="label-text">Brand Name</span>
                             </label>
-                            <label className="  w-full">
+                            <label defaultValue={brand} className="  w-full">
                                 <select name="brand" className="select  w-full">
                                     <option value="Toyota">Toyota</option>
                                     <option value="Ford">Ford</option>
@@ -139,7 +138,7 @@ const AddProduct = () => {
 
 
 
-                    <input type="submit" value="Add new Car" className="btn mt-4 btn-block bg-pink-600 text-white" />
+                    <input type="submit" value="Submit" className="btn mt-4 btn-block bg-pink-600 text-white" />
 
 
 
@@ -152,8 +151,7 @@ const AddProduct = () => {
 
 
         </div >
-
     );
 };
 
-export default AddProduct;
+export default Updatebutton;

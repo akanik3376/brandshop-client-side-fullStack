@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 
 const Category = ({ data }) => {
 
-    const { id, name, image } = data || {}
+
+    const { name, image } = data || {}
     // const { id } = useParams()
 
     return (
-        <Link to={`/brand/${id}`}>
+        <Link to={`/brand/${name}`}>
 
             <div className="card bg-base-100 shadow-xl">
                 <figure className="px-10 pt-10">

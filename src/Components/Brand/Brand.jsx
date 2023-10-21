@@ -21,10 +21,13 @@ const Brand = () => {
             <div className="my-10 container mx-auto">
                 <Slider></Slider>
             </div>
-            <div className="container mx-auto my-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {
-                    cars?.map(car => <SingleCar key={car._id} car={car}></SingleCar>)
-                }
+            <div>
+                <h1 className="text-4xl font-bold text-center text-cyan-900 my-7">Chose your brand {name} !</h1>
+                <div className="container mx-auto my-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                    {
+                        cars?.map(car => <SingleCar key={car._id} car={car}></SingleCar>)
+                    }
+                </div>
             </div>
         </div>
     );

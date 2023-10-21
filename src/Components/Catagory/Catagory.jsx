@@ -11,9 +11,9 @@ const Category = ({ data }) => {
     return (
         <Link to={`/brand/${name}`}>
 
-            <div className="card bg-base-100 shadow-xl">
+            <div className=" shadow-xl">
                 <figure className="px-10 pt-10">
-                    <img src={image} className="rounded-xl object-top" />
+                    <img src={image} className="rounded-xl object-cover" />
                 </figure>
                 <div className="card-body  ">
                     <h2 className="card-title">Brand: {name}</h2>

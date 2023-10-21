@@ -22,7 +22,7 @@ const CarDetails = () => {
         newData.userName = user.displayName
         newData.userEmail = user.email
 
-        fetch('http://localhost:5000/addToCard', {
+        fetch('https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/addToCard', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -35,7 +35,7 @@ const CarDetails = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'success!',
-                        text: 'User added successfully',
+                        text: 'Added successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })

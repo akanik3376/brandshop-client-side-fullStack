@@ -19,7 +19,7 @@ const Updatebutton = () => {
             name, price, description, rating, photo, brand
         }
         console.log(newCar)
-        fetch(`http://localhost:5000/newCar/${_id}`, {
+        fetch(`https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/newCar/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

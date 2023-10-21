@@ -11,7 +11,7 @@ const AddToCart = ({ data }) => {
     const HandelDelete = _id => {
 
 
-        fetch(`http://localhost:5000/getCart/${_id}`, {
+        fetch(`https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/getCart/${_id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/brand/:name',
                 element: <Brand></Brand>,
-                loader: () => fetch('http://localhost:5000/newCar')
+                loader: () => fetch('https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/newCar')
             },
 
             {
@@ -47,12 +47,12 @@ const router = createBrowserRouter([
             {
                 path: '/carDetails/:id',
                 element: <PrivetRoot><CarDetails></CarDetails></PrivetRoot>,
-                loader: ({ params }) => fetch(`http://localhost:5000/newCar/${params.id}`)
+                loader: ({ params }) => fetch(`https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/newCar/${params.id}`)
             },
             {
                 path: '/update/:id',
                 element: <PrivetRoot><Updatebutton></Updatebutton></PrivetRoot>,
-                loader: ({ params }) => fetch(`http://localhost:5000/newCar/${params.id}`)
+                loader: ({ params }) => fetch(`https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/newCar/${params.id}`)
             },
 
         ]

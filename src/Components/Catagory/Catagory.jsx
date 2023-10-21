@@ -13,7 +13,7 @@ const Category = ({ data }) => {
 
             <div className=" shadow-xl">
                 <figure className="px-10 pt-10">
-                    <img src={image} className="rounded-xl object-cover" />
+                    <img src={image} className="rounded-xl h-40 w-full " />
                 </figure>
                 <div className="card-body  ">
                     <h2 className="card-title">Brand: {name}</h2>

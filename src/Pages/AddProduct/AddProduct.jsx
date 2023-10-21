@@ -19,7 +19,7 @@ const AddProduct = () => {
 
         // send data to back hand data server
 
-        fetch('http://localhost:5000/newCar', {
+        fetch('https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/newCar', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

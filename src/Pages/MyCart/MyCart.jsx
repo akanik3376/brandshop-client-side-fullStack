@@ -9,7 +9,7 @@ const MyCart = () => {
     const [data, setData] = useState()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/getCart/${user?.email}`)
+        fetch(`https://tecnology-server-beth1yehc-anik-ghoshs-projects.vercel.app/getCart/${user?.email}`)
             .then(res => res.json())
             .then(data => setData(data))
     }, [user?.email])

@@ -10,9 +10,9 @@ const SingleCar = ({ car }) => {
     return (
         <div>
 
-            <div className="card card-compact  border-2 p-5">
-                <figure><img src={photo} alt="Shoes" /></figure>
-                <div className="card-body flex-col">
+            <div className="card card-compact flex-col border-2 p-5">
+                <figure><img className="flex-1" src={photo} alt="Shoes" /></figure>
+                <div className="card-body flex-1">
                     <h2 className="card-title">{brand}</h2>
                     <h2 className="text-xl">{name}</h2>
                     <div className="flex">
@@ -20,7 +20,7 @@ const SingleCar = ({ car }) => {
                         <p className="text-xl font-semibold flex items-center gap-3"> < AiFillStar className="text-yellow-600"></AiFillStar>{rating}</p>
                     </div>
                     <p>{description}</p>
-                    <div className="card-actions flex-grow">
+                    <div className="card-actions ">
 
                         <Link to={`/carDetails/${_id}`}> <button className="btn btn-secondary ">Details
                         </button></Link>

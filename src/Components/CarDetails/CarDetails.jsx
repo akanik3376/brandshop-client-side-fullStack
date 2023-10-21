@@ -18,7 +18,7 @@ const CarDetails = () => {
         const newData = others
 
         console.log(_id)
-        newData.id = _id
+        newData._id
         newData.userName = user.displayName
         newData.userEmail = user.email
 
@@ -47,8 +47,8 @@ const CarDetails = () => {
     return (
         <div className="bg-slate-600 container mx-auto my-10">
             <h1 className="my-5 pt-5 text-center text-2xl font-semibold text-green-900">SHOPE NOW !</h1>
-            <div className="container mx-auto my-10 flex gap-10 p-5">
-                <img className="w-[50%]" src={photo} alt="" />
+            <div className="container mx-auto my-10 flex flex-col md:flex-row gap-10 p-5">
+                <img className=" w-full md:w-[50%]" src={photo} alt="" />
                 <div className="flex flex-col flex-grow space-y-4 ">
                     <h4 className="text-2xl font-semibold">{name}</h4>
                     <h4 className="text-2xl font-semibold">{brand}</h4>

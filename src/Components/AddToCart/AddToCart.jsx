@@ -1,13 +1,30 @@
 /* eslint-disable react/prop-types */
 
 import { AiFillStar } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const AddToCart = ({ data }) => {
+
     const { _id, brand, description, photo, price, rating, name } = data || {}
 
 
     const HandelDelete = _id => {
-        console.log(_id)
+
+
+        fetch(`http://localhost:5000/getCart/${_id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'Data delete successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            })
     }
 
     return (
